@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/billinghamj/go-petition-example/app"
-	"github.com/billinghamj/go-petition-example/database"
 	"github.com/billinghamj/go-petition-example/server"
+	"github.com/billinghamj/go-petition-example/services/database"
 )
 
 func main() {

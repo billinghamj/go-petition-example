@@ -1,6 +1,6 @@
 package app
 
-import "github.com/billinghamj/go-petition-example/database"
+import "github.com/billinghamj/go-petition-example/services/database"
 
 // App handles business logic, does not involve HTTP
 type App struct {
