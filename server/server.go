@@ -1,7 +1,6 @@
 package server
 
 import (
-	"encoding/json"
 	"log"
 	"net/http"
 	"os"
@@ -10,8 +9,8 @@ import (
 	"gopkg.in/tylerb/graceful.v1"
 
 	"github.com/billinghamj/go-petition-example/app"
-	"github.com/billinghamj/go-petition-example/models"
 	"github.com/codegangsta/negroni"
+	"github.com/phyber/negroni-gzip/gzip"
 )
 
 // Server uses an App, but exposes its functionality via HTTP
@@ -40,52 +39,18 @@ func (server *Server) Run(addr string) {
 func initServer(server *Server) {
 	server.negroni.Use(negroni.NewRecovery())
 	server.negroni.Use(negroni.NewLogger())
+	server.negroni.Use(gzip.Gzip(gzip.DefaultCompression)) // order sensitive
+	// todo: reject non-post
 
-	handler := createHandler(server.app)
+	handler := createMux(server.app)
 	server.negroni.UseHandler(handler)
 }
 
-func createHandler(app *app.App) http.Handler {
+func createMux(app *app.App) http.Handler {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/signatures", func(w http.ResponseWriter, req *http.Request) {
-		switch req.Method {
-		default:
-			w.WriteHeader(406)
-
-		case "GET":
-			if signatures, err := app.ListPetitionSignatures(); err != nil {
-				panic(err)
-			} else {
-				if data, err := json.Marshal(signatures); err != nil {
-					panic(err)
-				} else {
-					w.WriteHeader(200)
-					w.Write(data)
-				}
-			}
-
-		case "POST":
-			signature := models.Signature{}
-
-			if err := json.NewDecoder(req.Body).Decode(&signature); err != nil {
-				w.WriteHeader(400)
-				return
-			}
-
-			if err := app.SignPetition(&signature); err != nil {
-				w.WriteHeader(409)
-				return
-			}
-
-			if data, err := json.Marshal(signature); err != nil {
-				panic(err)
-			} else {
-				w.WriteHeader(201)
-				w.Write(data)
-			}
-		}
-	})
+	mux.Handle("/1/signature_list", createHandler(app, signatureList))
+	mux.Handle("/1/signature_create", createHandler(app, signatureCreate))
 
 	return mux
 }
