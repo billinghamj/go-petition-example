@@ -3,7 +3,6 @@ package server
 import (
 	"github.com/billinghamj/go-petition-example/models"
 	"github.com/billinghamj/go-petition-example/server/handler"
-	"github.com/mitchellh/mapstructure"
 )
 
 func signatureList(ctx handler.Context, input map[string]interface{}) (interface{}, error) {
@@ -16,7 +15,7 @@ func signatureCreate(ctx handler.Context, input map[string]interface{}) (interfa
 	// todo: validate input
 
 	data := models.Signature{}
-	if err := mapstructure.Decode(input, &data); err != nil {
+	if err := mapInput(input, &data); err != nil {
 		return nil, err
 	}
 
