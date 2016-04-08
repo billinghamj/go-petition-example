@@ -16,7 +16,9 @@ func signatureCreate(ctx handler.Context, input map[string]interface{}) (interfa
 	// todo: validate input
 
 	data := models.Signature{}
-	mapstructure.Decode(input, &data)
+	if err := mapstructure.Decode(input, &data); err != nil {
+		return nil, err
+	}
 
 	return ctx.App.SignPetition(data)
 }

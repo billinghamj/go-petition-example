@@ -22,7 +22,7 @@ func getOutputType(r *http.Request) (string, error) {
 		return "", err
 	}
 
-	return alt.Name, nil
+	return alt.Value, nil
 }
 
 var renderer = render.New()

@@ -53,7 +53,7 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err = writeOutput(w, 200, outputType, output); err != nil {
+	if err = writeOutput(w, status, outputType, output); err != nil {
 		w.WriteHeader(500)
 		return
 	}
