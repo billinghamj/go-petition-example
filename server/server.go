@@ -28,7 +28,6 @@ func Create(app *app.App) *Server {
 	server.negroni.Use(negroni.NewRecovery())
 	server.negroni.Use(negroni.NewLogger())
 	server.negroni.Use(gzip.Gzip(gzip.DefaultCompression)) // order sensitive
-	// todo: reject non-post
 
 	mux := http.NewServeMux()
 	server.negroni.UseHandler(mux)

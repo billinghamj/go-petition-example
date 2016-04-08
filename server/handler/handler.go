@@ -26,6 +26,11 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	var output interface{}
 	var status int
 
+	if r.Method != "POST" {
+		w.WriteHeader(405)
+		return
+	}
+
 	if outputType, err = getOutputType(r); err != nil {
 		w.WriteHeader(406)
 		return
