@@ -3,6 +3,7 @@ package database
 import (
 	"github.com/billinghamj/go-petition-example/models"
 	"labix.org/v2/mgo"
+	"labix.org/v2/mgo/bson"
 )
 
 var signatureIndexes = []mgo.Index{
@@ -20,5 +21,8 @@ func (db *Database) SignatureFetchAll() ([]models.Signature, error) {
 
 // SignatureCreate inserts a new Signature instance into the database
 func (db *Database) SignatureCreate(data *models.Signature) error {
+	if data.ID == "" {
+		data.ID = bson.NewObjectId()
+	}
 	return db.mongoDb.C("signatures").Insert(data)
 }
