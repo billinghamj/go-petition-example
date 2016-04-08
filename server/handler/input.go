@@ -21,8 +21,6 @@ func getInput(r *http.Request) (data map[string]interface{}, err error) {
 		return
 	}
 
-	// todo: support application/x-www-form-urlencoded
-
 	switch mediaType {
 	default:
 		err = fmt.Errorf("unsupported media type")
@@ -30,6 +28,19 @@ func getInput(r *http.Request) (data map[string]interface{}, err error) {
 	case "application/json":
 		data = make(map[string]interface{})
 		err = json.NewDecoder(r.Body).Decode(&data)
+
+	case "application/x-www-form-urlencoded":
+		// currently very primitive - no support for maps/arrays/slices/etc.
+		// only able to output `map[string]string`
+		// todo: support proper structured `a[0][abc]=1234` format
+
+		if err = r.ParseForm(); err == nil {
+			data = make(map[string]interface{})
+
+			for k := range r.PostForm {
+				data[k] = r.PostForm.Get(k)
+			}
+		}
 	}
 
 	return

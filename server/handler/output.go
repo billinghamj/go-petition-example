@@ -30,7 +30,7 @@ var renderer = render.New()
 func writeOutput(w http.ResponseWriter, status int, format string, output interface{}) error {
 	switch format {
 	default:
-		panic("unpossibru!")
+		panic("should not happen")
 
 	case "application/json":
 		return renderer.JSON(w, status, output)
