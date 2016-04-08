@@ -2,16 +2,17 @@ package server
 
 import (
 	"github.com/billinghamj/go-petition-example/models"
+	"github.com/billinghamj/go-petition-example/server/handler"
 	"github.com/mitchellh/mapstructure"
 )
 
-func signatureList(ctx context, input map[string]interface{}) (interface{}, error) {
+func signatureList(ctx handler.Context, input map[string]interface{}) (interface{}, error) {
 	// todo: validate input
 
 	return ctx.App.ListPetitionSignatures()
 }
 
-func signatureCreate(ctx context, input map[string]interface{}) (interface{}, error) {
+func signatureCreate(ctx handler.Context, input map[string]interface{}) (interface{}, error) {
 	// todo: validate input
 
 	data := models.Signature{}
