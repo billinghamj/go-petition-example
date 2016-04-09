@@ -4,9 +4,10 @@ import (
 	"net/http"
 
 	"github.com/billinghamj/go-petition-example/app"
+	"github.com/billinghamj/go-petition-example/log"
 )
 
-type handlerFn func(Context, map[string]interface{}) (interface{}, error)
+type handlerFn func(Context, map[string]interface{}) (interface{}, *log.Error)
 
 // Handler allows a semantic function to be used as an HTTP handler
 type Handler struct {
