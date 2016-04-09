@@ -1,0 +1,52 @@
+{
+	"ImportPath": "github.com/billinghamj/go-petition-example",
+	"GoVersion": "go1.6",
+	"GodepVersion": "v60",
+	"Deps": [
+		{
+			"ImportPath": "github.com/K-Phoen/negotiation",
+			"Rev": "416fb5f2f78840726e34b2b899b913684040dc7e"
+		},
+		{
+			"ImportPath": "github.com/codegangsta/negroni",
+			"Comment": "v0.1-70-gc7477ad",
+			"Rev": "c7477ad8e330bef55bf1ebe300cf8aa67c492d1b"
+		},
+		{
+			"ImportPath": "github.com/mitchellh/mapstructure",
+			"Rev": "d2dd0262208475919e1a362f675cfc0e7c10e905"
+		},
+		{
+			"ImportPath": "github.com/phyber/negroni-gzip/gzip",
+			"Rev": "1211b7a0892223f5b3f1af8629ea6c3d9f984028"
+		},
+		{
+			"ImportPath": "github.com/unrolled/render",
+			"Rev": "198ad4d8b8a4612176b804ca10555b222a086b40"
+		},
+		{
+			"ImportPath": "golang.org/x/net/netutil",
+			"Rev": "af4fee9d05b66edc24197d189e6118f8ebce8c2b"
+		},
+		{
+			"ImportPath": "gopkg.in/tylerb/graceful.v1",
+			"Comment": "v1.2.5",
+			"Rev": "9a3d4236b03bb5d26f7951134d248f9d5510d599"
+		},
+		{
+			"ImportPath": "labix.org/v2/mgo",
+			"Comment": "287",
+			"Rev": "gustavo@niemeyer.net-20140501184651-975yyw9ipld92pji"
+		},
+		{
+			"ImportPath": "labix.org/v2/mgo/bson",
+			"Comment": "287",
+			"Rev": "gustavo@niemeyer.net-20140501184651-975yyw9ipld92pji"
+		},
+		{
+			"ImportPath": "labix.org/v2/mgo/sasl",
+			"Comment": "287",
+			"Rev": "gustavo@niemeyer.net-20140501184651-975yyw9ipld92pji"
+		}
+	]
+}
