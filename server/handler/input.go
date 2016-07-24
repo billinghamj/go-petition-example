@@ -2,9 +2,10 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"mime"
 	"net/http"
+
+	"github.com/billinghamj/go-petition-example/log"
 )
 
 func getInput(r *http.Request) (data map[string]interface{}, err error) {
@@ -23,7 +24,7 @@ func getInput(r *http.Request) (data map[string]interface{}, err error) {
 
 	switch mediaType {
 	default:
-		err = fmt.Errorf("unsupported media type")
+		err = log.CreateError("unsupported_media_type", nil)
 
 	case "application/json":
 		data = make(map[string]interface{})

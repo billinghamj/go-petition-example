@@ -6,7 +6,7 @@ var indexesMap = map[string][]mgo.Index{
 	"signatures": signatureIndexes,
 }
 
-func indexesSetup(db *Database) error {
+func indexesSetup(db *database) error {
 	for k, v := range indexesMap {
 		if err := indexesIndex(db.mongoDb.C(k), v); err != nil {
 			return err

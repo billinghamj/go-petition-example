@@ -8,6 +8,6 @@ import (
 
 // Context contains the app instance and HTTP request
 type Context struct {
-	App     *app.App
+	App     app.App
 	Request *http.Request
 }

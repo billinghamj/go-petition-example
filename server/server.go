@@ -16,12 +16,12 @@ import (
 
 // Server uses an App, but exposes its functionality via HTTP
 type Server struct {
-	app     *app.App
+	app     app.App
 	negroni *negroni.Negroni
 }
 
 // Create a Server instance with an App instance
-func Create(app *app.App) *Server {
+func Create(app app.App) *Server {
 	n := negroni.New()
 	server := &Server{app, n}
 
